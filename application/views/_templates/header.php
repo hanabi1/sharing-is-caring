@@ -2,12 +2,12 @@
     <!-- Menu -->
     <div id= "page-container" class="container"> <!--This container end in footer.php-->
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <img class="header-image" src="<?php echo URL; ?>public/img/header.jpg" alt="Sharing is caring">
+            <div class="col-sm-12">
+                <img class="header-image" title ="Sharing is caring" src="<?php echo URL; ?>public/img/header.jpg" alt="Sharing is caring">
             </div>
         </div>
         <div class="row">   
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
                 <nav role="navigation" class="navbar navbar-default">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
