@@ -21,5 +21,19 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    
+        <script type="text/javascript">
+            var oa = document.createElement('script');
+            oa.type = 'text/javascript'; oa.async = true;
+            oa.src = '//sharing-is-caring.api.oneall.com/socialize/library.js'
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(oa, s)
+        </script> 
+
+        <!-- The plugin will be embedded into this div //-->
+        <script type="text/javascript">
+            var _oneall = _oneall || [];
+            _oneall.push(['social_login', 'set_callback_uri', '#your_callback_uri#']);
+            _oneall.push(['social_login', 'set_providers', ['amazon', 'blogger', 'disqus', 'facebook', 'foursquare', 'github', 'google', 'instagram', 'linkedin', 'livejournal', 'mailru', 'odnoklassniki', 'openid', 'paypal', 'reddit', 'skyrock', 'stackexchange', 'steam', 'twitch', 'twitter', 'vimeo', 'vkontakte', 'windowslive', 'wordpress', 'yahoo', 'youtube']]);
+            _oneall.push(['social_login', 'do_render_ui', 'oa_social_login_container']);
+        </script>
     </head>

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-8 col-sm-offset-1">
-	    <h2>Home</h2>
+	    <h2>My videos</h2>
 	    <p>
 	    	Bacon ipsum dolor sit amet leberkas hamburger chicken pork belly, kevin short loin biltong pig bacon. Boudin meatball rump sausage pork shank bresaola beef tongue biltong tenderloin. Porchetta sirloin pork belly beef. Kevin pork chop flank chicken drumstick.
 	    </p> 
