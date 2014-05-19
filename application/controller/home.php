@@ -16,8 +16,8 @@ class Home extends Controller
      */
     public function index()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> 'Home'));  
         require 'application/views/home/index.php';
         require 'application/views/_templates/footer.php';
     }

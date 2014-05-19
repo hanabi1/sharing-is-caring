@@ -3,7 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Sharing Is Caring * Home</title>
+        <title>
+            <?php if(isset($title) && $title):?>
+                <?php echo ucfirst($title) . ' &middot; Sharing is Caring' ;?>
+            <?php else:?>
+                <?php echo 'Sharing is Caring';?>
+            <?php endif;?>
+        </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- css -->

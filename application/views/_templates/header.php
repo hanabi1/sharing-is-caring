@@ -22,9 +22,9 @@
                     <!-- Collection of nav links, forms, and other content for toggling -->
                     <div id="navbarCollapse" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<?php echo URL; ?>">Home</a></li>
-                            <li><a href="<?php echo URL; ?>videos">Videos</a></li>
-                            <li class="dropdown">
+                            <li class="<?php if(strtolower($title)=='home') echo 'active'?>"><a href="<?php echo URL; ?>">Home</a></li>
+                            <li class="<?php if(strtolower($title)=='videos') echo 'active'?>"><a href="<?php echo URL; ?>videos">Videos</a></li>
+                            <li class="dropdown <?php if(strtolower($title)=='profile') echo 'active'?>">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">My Profile <b class="caret"></b></a>
                                 <ul role="menu" class="dropdown-menu">
                                     <li><a href="<?php echo URL; ?>profile/myvideos">My videos</a></li>

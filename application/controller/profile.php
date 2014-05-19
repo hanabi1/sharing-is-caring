@@ -16,40 +16,40 @@ class Profile extends Controller
      */
     public function index()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));    
         require 'application/views/profile/index.php';
         require 'application/views/_templates/footer.php';
     }
 
     public function myvideos()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         require 'application/views/profile/myvideos.php';
         require 'application/views/_templates/footer.php';
     }
 
     public function messages()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         require 'application/views/profile/messages.php';
         require 'application/views/_templates/footer.php';
     }
 
     public function logout()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         require 'application/views/profile/logout.php';
         require 'application/views/_templates/footer.php';
     }
 
     public function login()
     {
-        require 'application/views/_templates/head.php';
-        require 'application/views/_templates/header.php';
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         require 'application/views/profile/login.php';
         require 'application/views/_templates/footer.php';
     }
