@@ -35,9 +35,6 @@ if ( ! empty ($_POST['connection_token']))
   //Error
   if ($result_json === false)
   {
-    //You may want to implement your custom error handling here
-    echo 'Curl error: ' . curl_error($curl). '<br />';
-    echo 'Curl info: ' . curl_getinfo($curl). '<br />';
     curl_close($curl);
   }
   //Success
