@@ -1,5 +1,10 @@
 <?php
  
+
+/// ERROR IS IN THE CONSTANTS SOMEWHERE, CAN'T FIND THE FECKER =)
+
+
+
 //Check if we have received a connection_token
 if ( ! empty ($_POST['connection_token']))
 {
@@ -12,7 +17,7 @@ if ( ! empty ($_POST['connection_token']))
   $site_private_key = 'de440a5c-f778-4b9d-b5c8-7230e27dd0ec';
  
   //API Access domain
-  $site_domain = $site_subdomain.'sharing-is-caring.api.oneall.com/';
+  $site_domain = $site_subdomain.'.api.oneall.com/';
  
   //Connection Resource
   //http://docs.oneall.com/api/resources/connections/read-connection-details/
@@ -31,7 +36,7 @@ if ( ! empty ($_POST['connection_token']))
  
   //Send request
   $result_json = curl_exec($curl);
- 
+  var_dump($result_json);
   //Error
   if ($result_json === false)
   {
