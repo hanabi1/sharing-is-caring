@@ -105,12 +105,13 @@ if ( ! empty ($_POST['connection_token']))
           // You now need to login this user, exactly like you would login a user
           // after a traditional (username/password) login (i.e. set cookies, setup 
           // the session) and forward him to another page (i.e. his account dashboard)
-          echo '----------------------------------------------';
+          
           $_SESSION["user_id"]    = $user_id;
           $_SESSION["user_token"] = $user_token;
-          $_SESSION["user_name"]  = $data->user->identity->preferredUsername;
-
-          $this->redirectToPage('home');
+          $_SESSION["user_name"]  = $data->user->identity->name->formatted;
+          $_SESSION["user_profile_thumb"] = $data->user->identity->thumbnailUrl;
+          $_SESSION["user_profile_large"] = $data->user->identity->pictureUrl;
+          $this->redirectToPage('profile');
         }
       break;
     }

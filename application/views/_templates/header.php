@@ -26,7 +26,7 @@
                             <li class="<?php if(strtolower($title)=='videos') echo 'active'?>"><a href="<?php echo URL; ?>videos">Videos</a></li>
                             <?php if(isset($_SESSION['user_name'])):?>
                                 <li class="dropdown <?php if(strtolower($title)=='profile') echo 'active'?>">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php if(isset($_SESSION['user_name'])) echo ucfirst($_SESSION['user_name']) . '\'s Profile'; else echo 'My Profile'?><b class="caret"></b></a>
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img class="menu-thumbnail" src="<?php echo $_SESSION['user_profile_thumb']?>" alt="YOU" title="YOU"><?php if(isset($_SESSION['user_name'])) echo ucfirst($_SESSION['user_name']) . '\'s Profile'; else echo 'My Profile'?><b class="caret"></b></a>
                                     <ul role="menu" class="dropdown-menu">
                                         <li><a href="<?php echo URL; ?>profile/myvideos">My videos</a></li>
                                         <li><a href="<?php echo URL; ?>profile/myprofile">Profile</a></li>
