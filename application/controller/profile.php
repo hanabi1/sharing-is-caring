@@ -53,4 +53,9 @@ class Profile extends Controller
         require 'application/views/profile/login.php';
         require 'application/views/_templates/footer.php';
     }
+
+    public function callbackHandler(){
+
+        require 'application/tools/oneall/oneall_callbackhandler.php';
+    }
 }

@@ -10,14 +10,20 @@ class Controller
      */
     public $db = null;
     public $pageTitle = '';
+
+    //We load the usermodel globally so all pages can check if a user is authenticated 
+    protected $userModel;
+    
     /**
      * Whenever a controller is created, open a database connection too. The idea behind is to have ONE connection
      * that can be used by multiple models (there are frameworks that open one connection per model).
      */
-    function __construct($pageTitleIn='no title')
+    function __construct($pageTitleIn='')
     {
         $this->openDatabaseConnection();
         $this->pageTitle=$pageTitleIn;
+
+        $this->userModel = $this->loadModel('usermodel');
     }
 
     /**
@@ -29,7 +35,7 @@ class Controller
         // "objects", which means all results will be objects, like this: $result->user_name !
         // For example, fetch mode FETCH_ASSOC would return results like this: $result["user_name] !
         // @see http://www.php.net/manual/en/pdostatement.fetch.php
-        $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING);
+        $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
 
         // generate a database connection, using the PDO connector
         // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
