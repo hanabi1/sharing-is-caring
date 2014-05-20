@@ -1,10 +1,5 @@
 <?php
  
-
-/// ERROR IS IN THE CONSTANTS SOMEWHERE, CAN'T FIND THE FECKER =)
-
-
-
 //Check if we have received a connection_token
 if ( ! empty ($_POST['connection_token']))
 {
@@ -17,7 +12,7 @@ if ( ! empty ($_POST['connection_token']))
   $site_private_key = 'de440a5c-f778-4b9d-b5c8-7230e27dd0ec';
  
   //API Access domain
-  $site_domain = $site_subdomain.'.api.oneall.com/';
+  $site_domain = $site_subdomain.'.api.oneall.com';
  
   //Connection Resource
   //http://docs.oneall.com/api/resources/connections/read-connection-details/
@@ -95,8 +90,7 @@ if ( ! empty ($_POST['connection_token']))
           // already connected before
           else
           {
-            // 1b1) The account already exists
-            echo 'Sucess! The account allready exists!';    
+            // 1b1) The account already exists  
           }
    
           // 2) You have either created a new user or read the details of an existing
@@ -111,7 +105,12 @@ if ( ! empty ($_POST['connection_token']))
           // You now need to login this user, exactly like you would login a user
           // after a traditional (username/password) login (i.e. set cookies, setup 
           // the session) and forward him to another page (i.e. his account dashboard)
-          echo 'Sucess!';    
+          echo '----------------------------------------------';
+          $_SESSION["user_id"]    = $user_id;
+          $_SESSION["user_token"] = $user_token;
+          $_SESSION["user_name"]  = $data->user->identity->preferredUsername;
+
+          $this->redirectToPage('home');
         }
       break;
     }

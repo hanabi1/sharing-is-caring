@@ -40,10 +40,10 @@ class Profile extends Controller
 
     public function logout()
     {
-        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
-        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        require 'application/views/profile/logout.php';
-        require 'application/views/_templates/footer.php';
+        $_SESSION = array();
+        session_destroy();
+        
+        $this->redirectToPage('home');
     }
 
     public function login()

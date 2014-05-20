@@ -19,7 +19,6 @@ class Home extends Controller
         echo $this->dressTemplate('/_templates/head', array('title'=> 'Home', 
                                                             'userLoggedIn' => $this->userModel->isUserLoggedIn()
                                                             ));     
-
         echo $this->dressTemplate('/_templates/header', array('title'=> 'Home'));  
         require 'application/views/home/index.php';
         require 'application/views/_templates/footer.php';

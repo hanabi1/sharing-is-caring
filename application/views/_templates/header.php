@@ -24,25 +24,30 @@
                         <ul class="nav navbar-nav">
                             <li class="<?php if(strtolower($title)=='home') echo 'active'?>"><a href="<?php echo URL; ?>">Home</a></li>
                             <li class="<?php if(strtolower($title)=='videos') echo 'active'?>"><a href="<?php echo URL; ?>videos">Videos</a></li>
-                            <li class="dropdown <?php if(strtolower($title)=='profile') echo 'active'?>">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">My Profile <b class="caret"></b></a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="<?php echo URL; ?>profile/myvideos">My videos</a></li>
-                                    <li><a href="<?php echo URL; ?>profile/myprofile">Profile</a></li>
-                                    <li><a href="<?php echo URL; ?>profile/messages">Messages</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="<?php echo URL; ?>profile/logout">Logout</a></li>
-                                </ul>
-                            </li>
+                            <?php if(isset($_SESSION['user_name'])):?>
+                                <li class="dropdown <?php if(strtolower($title)=='profile') echo 'active'?>">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php if(isset($_SESSION['user_name'])) echo ucfirst($_SESSION['user_name']) . '\'s Profile'; else echo 'My Profile'?><b class="caret"></b></a>
+                                    <ul role="menu" class="dropdown-menu">
+                                        <li><a href="<?php echo URL; ?>profile/myvideos">My videos</a></li>
+                                        <li><a href="<?php echo URL; ?>profile/myprofile">Profile</a></li>
+                                        <li><a href="<?php echo URL; ?>profile/messages">Messages</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo URL; ?>profile/logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif;?>
+                            </ul>
                         </ul>
                         <form role="search" class="navbar-form navbar-right">
                             <div class="form-group">
                                 <input type="text" placeholder="Search for videos..." class="form-control">
                             </div>
                         </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<?php echo URL; ?>profile/login">Login</a></li>
-                        </ul>
+                        <?php if(!isset($_SESSION['user_name'])):?>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="<?php echo URL; ?>profile/login">Login</a></li>
+                            </ul>
+                        <?php endif;?>
                     </div>
                 </nav>
             </div>

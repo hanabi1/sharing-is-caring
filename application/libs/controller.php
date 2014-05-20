@@ -66,4 +66,9 @@ class Controller
         $htmlString = ob_get_clean();
         return $htmlString;
     }
+
+    public function redirectToPage($page){
+        header("Location: " . URL . strtolower($page));
+        die();
+    }
 }

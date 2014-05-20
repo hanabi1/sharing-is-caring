@@ -18,7 +18,7 @@ class UserModel
         return false;  
     }
     
-    private function GetUserIdForUserToken($user_token){
+    public function GetUserIdForUserToken($user_token){
         // Execute the query: SELECT user_id FROM user_social_link WHERE user_token = <user_token>
         // Return the user_id or null if none found.
    
@@ -30,7 +30,7 @@ class UserModel
         return $query->fetchAll();
     }
 
-    private function GetUserTokenForUserId($user_id){
+    public function GetUserTokenForUserId($user_id){
         // Execute the query: SELECT user_token FROM user_social_link WHERE user_id = <user_id>
         // Return the user_token or null if none found.
         
@@ -43,7 +43,7 @@ class UserModel
 
     }
 
-    private function LinkUserTokenToUserId($user_token, $user_id){
+    public function LinkUserTokenToUserId($user_token, $user_id){
         // Execute the query: INSERT INTO user_social_link SET user_token = <user_token>, user_id = <user_id>
         // Nothing has to be returned
         $sql = "INSERT INTO user_social_link SET user_token = :usertoken , user_id = :userid";
@@ -52,7 +52,7 @@ class UserModel
                               'userid' => $user_id)); 
     }
 
-    private function UnlinkUserTokenFromUserId($user_token, $user_id){
+    public function UnlinkUserTokenFromUserId($user_token, $user_id){
         // Execute the query: DELETE FROM user_social_link WHERE user_token = <user_token> AND user_id = <user_id>
         // Nothing has to be returned
         $sql = "DELETE FROM user_social_link WHERE user_token = :usertoken AND user_id = :userid";
@@ -61,7 +61,7 @@ class UserModel
                               'userid' => $user_id));     
 
     }
-    private function createUserId(){
+    public function createUserId(){
         $sql = "INSERT INTO user_social_link SET user_id = :userid";
         $query = $this->db->prepare($sql);
         $query->execute(array('userid' => rand(7, 7))); 
