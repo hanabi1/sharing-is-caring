@@ -1,4 +1,6 @@
 <?php        
+        //"facebook" doesnt work?
+
         $callbackURI = URL . 'profile/callbackhandler';
         echo '
         <script type="text/javascript">
