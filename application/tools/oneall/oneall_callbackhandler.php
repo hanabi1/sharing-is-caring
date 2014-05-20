@@ -26,7 +26,7 @@ if ( ! empty ($_POST['connection_token']))
   curl_setopt($curl, CURLOPT_TIMEOUT, 15);
   curl_setopt($curl, CURLOPT_VERBOSE, 0);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); //THIS SHOULD IDEALY BE SET TO TRUE
   curl_setopt($curl, CURLOPT_FAILONERROR, 0);
  
   //Send request
