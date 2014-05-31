@@ -6,7 +6,7 @@
 	    		<div class="col-sm-3">
 		    		<?php if(isset($myMovie['youtubeid'],$myMovie['thumbnailres'],$myMovie['title'])):?>
 		    			<a href="http://www.youtube.com/watch?v=<?php echo $myMovie['youtubeid']?>">
-		    				<img src="http://img.youtube.com/vi/<?php echo $myMovie['youtubeid']?>/1.jpg" alt="<?php echo $myMovie['title']?>" target="_blank">
+		    				<img src="http://img.youtube.com/vi/<?php echo $myMovie['youtubeid']?>/1.jpg" title="<?php echo $myMovie['title']?>" alt="<?php echo $myMovie['title']?>" target="_blank">
 		    			</a>
 		    		<?php endif;?>
 		    	</div>
