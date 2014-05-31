@@ -111,7 +111,7 @@ class MoviesModel
     //Gets the most recently added movies
     public function getMostRecentMovies($numberOfMovies = 5)
     {
-        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT :numberofmovies";
+        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT 5";
         $query = $this->db->prepare($sql);
         $query->execute(array('numberofmovies' => $numberOfMovies));
 
