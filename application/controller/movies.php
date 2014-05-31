@@ -20,7 +20,7 @@ class Movies extends Controller
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        echo $this->dressTemplate('/movies/index', array('myMovies'=> $moviesModel->getAllMovies));
+        echo $this->dressTemplate('/movies/index', array('myMovies'=> $moviesModel->getAllMoviesFromDB));
         require 'application/views/_templates/footer.php';
     }
 }

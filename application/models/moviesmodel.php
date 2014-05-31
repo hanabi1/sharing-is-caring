@@ -35,7 +35,7 @@ class MoviesModel
     }
 
     //Get a single movie by its machineTitle
-    public function getAllMoviesFromDB($machineTitle)
+    public function getAllMoviesFromDB()
     {
         $sql = "SELECT * FROM movies";
         $query = $this->db->prepare($sql);
