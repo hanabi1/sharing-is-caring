@@ -34,10 +34,16 @@ class MoviesModel
         return $query->fetchAll();
     }
 
-    //Get a single movie by its machineTitle
-    public function searchMoviesForString($searchString)
+    //Get all movies by its description
+    //Converts both the search string and descriptions searched to upper case.
+    //So that the search becomes case insensitive
+    public function searchMoviesForString($searchString='')
     {
-        $sql = "SELECT * FROM movies where description LIKE :searchstring";
+        //Convert search string to uppercase
+        $searchString = strtoupper($searchString);
+
+        //Convert the all descriptions to uppercase
+        $sql = "SELECT * FROM movies where UPPER(description) LIKE :searchstring";
         $query = $this->db->prepare($sql);
         $query->execute(array('searchstring' => '%' . $searchString . '%'));
 
