@@ -1,0 +1,15 @@
+metod-lista!
+
+- moviemodel
+ - getallmovies
+ - getmovie
+ - storemovie
+ - getrecentmovies
+
+
+- youtubemodel
+ - getallmovies
+ - getmovie
+ - getthumbnail
+
+Maybe some css (höhö) app.js
