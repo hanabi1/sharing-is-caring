@@ -34,6 +34,20 @@ class MoviesModel
         return $query->fetchAll();
     }
 
+    //Get a single movie by its machineTitle
+    public function getAllMoviesFromDB($machineTitle)
+    {
+        $sql = "SELECT * FROM movies";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // libs/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetchAll();
+    }
+
     public function cacheMoviesToDB($freshMovies){
         if(!isset($freshMovies)){
             return false;
