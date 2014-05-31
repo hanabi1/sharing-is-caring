@@ -48,8 +48,8 @@ class MoviesModel
 
         //Insert all the freshmovies into DB
         //We use placeholders :example that we populate before execution
-        $sql = "INSERT INTO movies (title,machinetitle,description,link,author)
-               VALUES (:title,:machinetitle,:description,:link,:author)";
+        $sql = "INSERT INTO movies (title,machinetitle,description,link,thumbnailres,id)
+               VALUES (:title,:machinetitle,:description,:link,:thumbnail,:id)";
 
         //Load up the statement we just used
         $query = $this->db->prepare($sql);
@@ -65,6 +65,8 @@ class MoviesModel
                                   'machinetitle'=>$movie['machinetitle'],
                                   'description'=>$movie['description'],
                                   'link'=>$movie['link'],
+                                  'thumbnail'=>$movie['thumbnail'],
+                                  'id'=>$movie['id']
                             ));
         }
 
