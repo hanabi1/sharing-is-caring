@@ -8,7 +8,7 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Videos extends Controller
+class Movies extends Controller
 {
     /**
      * PAGE: index
@@ -16,9 +16,11 @@ class Videos extends Controller
      */
     public function index()
     {
+        $movieModel = $this->loadModel('MoviesModel');       
+
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        require 'application/views/videos/index.php';
+        echo $this->dressTemplate('/movies/index', array('myMovies'=> $moviesModel->getAllMovies));
         require 'application/views/_templates/footer.php';
     }
 }

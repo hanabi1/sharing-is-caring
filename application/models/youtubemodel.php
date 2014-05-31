@@ -14,6 +14,7 @@ class YoutubeModel
         }
     }
 
+    //Get the highest available thumbnail resolution string
     function getMaximumThumbnailSize($youtubeID=''){
         if(!$youtubeID){
             return false;
@@ -31,7 +32,7 @@ class YoutubeModel
         return 'default.jpg';
     }
     
-    //gets the header response ex 404
+    //Gets the header response ex 404
     private function get_http_response_code($url) {
         $headers = get_headers($url);
         return substr($headers[0], 9, 3);
