@@ -16,9 +16,11 @@ class Profile extends Controller
      */
     public function index()
     {
+        $movieModel = $this->loadModel('MoviesModel');       
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));    
         require 'application/views/profile/index.php';
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
 
@@ -35,9 +37,12 @@ class Profile extends Controller
 
     public function messages()
     {
+        $movieModel = $this->loadModel('MoviesModel');       
+
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         require 'application/views/profile/messages.php';
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
 
@@ -58,7 +63,6 @@ class Profile extends Controller
     }
 
     public function callbackHandler(){
-
         require 'application/tools/oneall/oneall_callbackhandler.php';
     }
 }

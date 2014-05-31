@@ -21,6 +21,7 @@ class Movies extends Controller
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         echo $this->dressTemplate('/movies/index', array('myMovies'=> $movieModel->getAllMoviesFromDB()));
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
 
@@ -36,6 +37,7 @@ class Movies extends Controller
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
         echo $this->dressTemplate('/movies/search', array('myMovies'=> $movieModel->searchMoviesForString($_POST['searchfield'])));
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
 }
