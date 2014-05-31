@@ -1,7 +1,7 @@
 metod-lista!
 
-- moviemodel
- - getallmovies
+- moviemodel v
+ - getallmovies 
  - getmovie
  - storemovie
  - getrecentmovies
