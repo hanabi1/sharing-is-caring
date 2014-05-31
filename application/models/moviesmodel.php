@@ -88,9 +88,9 @@ class MoviesModel
         return $this->db->commit();
     }
 
-    /*public function getMostRecentMovies()
+        public function getMostRecentMovies()
     {
-        $sql = "SELECT * FROM movies";
+        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT 5";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -100,5 +100,4 @@ class MoviesModel
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
-    */
 }

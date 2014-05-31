@@ -1,15 +1,15 @@
 metod-lista!
 
 - moviemodel v
- - getallmovies 
- - getmovie
- - storemovie
- - getrecentmovies
+ - getallmovies v
+ - getmovie v
+ - cachemovie v
+ - getrecentmovies v
 
 
 - youtubemodel
- - getallmovies
- - getmovie
- - getthumbnail
+ - getallmovies v
+ - getmovie v
+ - getthumbnail v
 
 Maybe some css (höhö) app.js
