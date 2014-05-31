@@ -22,11 +22,13 @@ class Profile extends Controller
         require 'application/views/_templates/footer.php';
     }
 
-    public function myvideos()
+    public function mymovies()
     {
-        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     
+        $movieModel = $this->loadModel('MoviesModel');       
+
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        require 'application/views/profile/myvideos.php';
+        echo $this->dressTemplate('/profile/mymovies', array('myMovies'=> $moviesModel->getAllMoviesFromDB));
         require 'application/views/_templates/footer.php';
     }
 
