@@ -16,9 +16,11 @@ class Movies extends Controller
      */
     public function index()
     {
+        $movieModel = $this->loadModel('MoviesModel');
+     
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        require 'application/views/movies/index.php';
+        echo $this->dressTemplate('/movies/index', array('myMovies'=> $movieModel->getAllMoviesFromDB()));
         require 'application/views/_templates/footer.php';
     }
 }

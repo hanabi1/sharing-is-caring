@@ -88,11 +88,12 @@ class MoviesModel
         return $this->db->commit();
     }
 
-        public function getMostRecentMovies()
+    //Gets the most recently added movies
+    public function getMostRecentMovies($numberOfMovies = 5)
     {
-        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT 5";
+        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT :numberofmovies";
         $query = $this->db->prepare($sql);
-        $query->execute();
+        $query->execute(array('numberofmovies' => $numberOfMovies));
 
         // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
         // libs/controller.php! If you prefer to get an associative array as the result, then do
