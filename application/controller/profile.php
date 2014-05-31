@@ -28,7 +28,7 @@ class Profile extends Controller
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        echo $this->dressTemplate('/profile/mymovies', array('myMovies'=> $moviesModel->getAllMoviesFromDB));
+        echo $this->dressTemplate('/profile/mymovies', array('myMovies'=> $movieModel->getAllMoviesFromDB()));
         require 'application/views/_templates/footer.php';
     }
 
