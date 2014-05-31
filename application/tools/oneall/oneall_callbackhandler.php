@@ -74,12 +74,13 @@ if ( ! empty ($_POST['connection_token']))
    
           // 1a) If the userID is empty then this is the first time that this user 
           // has connected with a social network account on your website
-          if ($user_id === null)
+          if ($user_id === null || empty($user_id) || $user_id == 0)
           {
             // 1a1) Create a new user account and store it in your database
             // Optionally display a form to collect  more data about the user.
-            $user_id = $this->userModel->createUserId;
-   
+            
+            $user_id = $this->userModel->createUserId();
+
             // 1a2) Attach the user_token to the userID of the created account.
             $this->userModel->LinkUserTokenToUserId ($user_token, $user_id);
           }
@@ -108,6 +109,7 @@ if ( ! empty ($_POST['connection_token']))
           $_SESSION["user_name"]  = $data->user->identity->name->formatted;
           $_SESSION["user_profile_thumb"] = $data->user->identity->thumbnailUrl;
           $_SESSION["user_profile_large"] = $data->user->identity->pictureUrl;
+
           $this->redirectToPage('profile');
         }
       break;

@@ -46,7 +46,7 @@ class UserModel
     public function LinkUserTokenToUserId($user_token, $user_id){
         // Execute the query: INSERT INTO user_social_link SET user_token = <user_token>, user_id = <user_id>
         // Nothing has to be returned
-        $sql = "INSERT INTO user_social_link SET user_token = :usertoken , user_id = :userid";
+        $sql = "UPDATE user_social_link SET user_token = :usertoken WHERE user_id = :userid ";
         $query = $this->db->prepare($sql);
         $query->execute(array('usertoken' => $user_token,
                               'userid' => $user_id)); 
@@ -62,10 +62,12 @@ class UserModel
 
     }
     public function createUserId(){
+        $generatedID = mt_rand(10000000, 99999999);
+
         $sql = "INSERT INTO user_social_link SET user_id = :userid";
         $query = $this->db->prepare($sql);
-        $query->execute(array('userid' => rand(7, 7))); 
+        $query->execute(array('userid' => $generatedID)); 
         
-        return $query->fetchAll();
+        return $generatedID;
     }
 }
