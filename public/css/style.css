@@ -11,7 +11,7 @@ border-radius: 40px;
 .navbar{
     margin-top: 0px;
 }
-.navbar-header > h1{
+.navbar-header > a > h1{
     font-size: 18px;
     line-height: 20px;
     height: 50px;  
@@ -41,4 +41,13 @@ footer{
 
 #page-container{
     min-height: 450px;
+}
+
+.video-thumbnail{
+    border-radius: 25px 25px 25px 25px;
+    -moz-border-radius: 25px 25px 25px 25px;
+    -webkit-border-radius: 25px 25px 25px 25px;
+    border: 0px solid #000000;
+
+    box-shadow: 0 4px 8px #999;
 }

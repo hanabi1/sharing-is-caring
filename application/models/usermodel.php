@@ -25,7 +25,6 @@ class UserModel
         $sql = "SELECT user_id FROM user_social_link WHERE user_token = :usertoken";
         $query = $this->db->prepare($sql);
         $query->execute(array('usertoken' => $user_token));
-
         // fetchAll() is the PDO method that gets all result rows.
         return $query->fetchAll();
     }

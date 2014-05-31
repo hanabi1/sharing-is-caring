@@ -19,7 +19,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <h1 class="navbar-brand">Sharing is Caring</h1>
+                            <a href="<?php echo URL; ?>"><h1 class="navbar-brand">Sharing is Caring</h1></a>
                         </div>
                         <!-- Collection of nav links, forms, and other content for toggling -->
                         <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -40,9 +40,10 @@
                                 <?php endif;?>
                             </ul>
                            
-                            <form role="search" class="navbar-form navbar-right">
+                            <form role="search" class="navbar-form navbar-right" method="post" action="<?php echo URL; ?>movies/search">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Search for movies..." class="form-control">
+                                    <input type="text" name="searchfield" placeholder="Search for movies..." class="form-control">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                 </div>
                             </form>
                             <?php if(!isset($_SESSION['user_name'])):?>
