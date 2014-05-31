@@ -4,8 +4,8 @@
 	    <?php foreach ($myMovies as $myMovie):?>
 	    	<div class="col-sm-8">
 	    		<?php if(isset($myMovie['youtubeid'],$myMovie['thumbnailres'],$myMovie['title'])):?>
-	    			<a href="http://www.youtube.com/watch?v=<?php echo $videoID?>">
-	    				<img src="http://img.youtube.com/vi/<?php echo $myMovie['youtubeid']?>/<?php echo $myMovie['thumbnailres']?>" alt="<?php echo $myMovie['title']?>" target="_blank">
+	    			<a href="http://www.youtube.com/watch?v=<?php echo $myMovie['youtubeid']?>">
+	    				<img src="http://img.youtube.com/vi/<?php echo $myMovie['youtubeid']?>/mqres.jpg" alt="<?php echo $myMovie['title']?>" target="_blank">
 	    			</a>
 	    		<?php endif;?>
 	    	</div>	
