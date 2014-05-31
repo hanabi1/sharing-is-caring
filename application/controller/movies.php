@@ -30,11 +30,12 @@ class Movies extends Controller
             $this->redirectToPage('');
             exit;
         }
+
         $movieModel = $this->loadModel('MoviesModel');
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        echo $this->dressTemplate('/movies/index', array('myMovies'=> $movieModel->searchMoviesForString($_POST['searchfield'])));
+        echo $this->dressTemplate('/movies/search', array('myMovies'=> $movieModel->searchMoviesForString($_POST['searchfield'])));
         require 'application/views/_templates/footer.php';
     }
 }
