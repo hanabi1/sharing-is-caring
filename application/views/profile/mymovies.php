@@ -3,7 +3,7 @@
 	    <h2>My Movies</h2>
 	    <?php foreach ($myMovies as $myMovie):?>
 	    	<div class="col-sm-8">
-	    		<?php if(isset($id,$thumbnailres,$title)):?>
+	    		<?php if(isset($youtubeid,$thumbnailres,$title)):?>
 	    			<a href="http://www.youtube.com/watch?v=<?php echo $videoID?>">
 	    				<img src="http://img.youtube.com/vi/<?php echo $videoID?>/<?php echo $thumbnailres?>" alt="<?php echo $title?>" target="_blank">
 	    			</a>
