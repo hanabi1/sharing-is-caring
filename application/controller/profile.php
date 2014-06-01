@@ -30,7 +30,7 @@ class Profile extends Controller
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
-        echo $this->dressTemplate('/profile/mymovies', array('myMovies'=> $movieModel->getAllMoviesFromDB()));
+        echo $this->dressTemplate('/profile/mymovies', array('movies'=> $movieModel->getAscOrderUserAddedMovies($_SESSION['user_id']))); 
         echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }

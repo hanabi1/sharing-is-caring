@@ -104,7 +104,7 @@ if ( ! empty ($_POST['connection_token']))
           // after a traditional (username/password) login (i.e. set cookies, setup 
           // the session) and forward him to another page (i.e. his account dashboard)
           
-          $_SESSION["user_id"]    = $user_id;
+          $_SESSION["user_id"]    = $user_id ['user_id'];
           $_SESSION["user_token"] = $user_token;
           $_SESSION["user_name"]  = $data->user->identity->name->formatted;
           $_SESSION["user_profile_thumb"] = $data->user->identity->thumbnailUrl;

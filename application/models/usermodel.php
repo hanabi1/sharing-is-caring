@@ -26,7 +26,7 @@ class UserModel
         $query = $this->db->prepare($sql);
         $query->execute(array('usertoken' => $user_token));
         // fetchAll() is the PDO method that gets all result rows.
-        return $query->fetchAll();
+        return $query->fetch();
     }
 
     public function GetUserTokenForUserId($user_id){
@@ -38,7 +38,7 @@ class UserModel
         $query->execute(array('userid' => $user_id));
 
         // fetchAll() is the PDO method that gets all result rows.
-        return $query->fetchAll();    
+        return $query->fetch();    
 
     }
 

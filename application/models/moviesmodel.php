@@ -68,6 +68,37 @@ class MoviesModel
         return $query->fetchAll();
     }
 
+    public function addMovieToDB($movie){
+        if(!isset($movie)){
+            return false;
+        }
+
+        //Insert all the freshmovies into DB
+        //We use placeholders :example that we populate before execution
+        $sql = "INSERT INTO movies (title,machinetitle,description,link,thumbnailres,youtubeid,userid)
+               VALUES (:title,:machinetitle,:description,:link,:thumbnailres,:youtubeid,:userid)";
+
+        //Load up the statement we just used
+        $query = $this->db->prepare($sql);
+
+        //Loop over all the movies in the variable $freshMovies
+        //Send them off one by one in the transaction
+
+        $query->execute(array('title'=>$movie['title'],
+                              'machinetitle'=>$movie['machinetitle'],
+                              'description'=>$movie['description'],
+                              'link'=>$movie['link'],
+                              'thumbnailres'=>$movie['thumbnailres'],
+                              'userid'=>$movie['userid'],
+                              'youtubeid'=>$movie['youtubeid']
+                        ));
+
+    }
+
+
+    /*
+        For future purposes!!
+
     public function cacheMoviesToDB($freshMovies){
         if(!isset($freshMovies)){
             return false;
@@ -107,8 +138,10 @@ class MoviesModel
         //return the status of the transaction
         return $this->db->commit();
     }
+    */
 
-    //Gets the most recently added movies
+
+    //Get the most recently added movies
     public function getMostRecentMovies($numberOfMovies = 5)
     {
         $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT 0, :numberofmovies";
@@ -122,4 +155,50 @@ class MoviesModel
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
+
+
+    //Get all user added movies in time-ascending order
+    public function getAscOrderUserAddedMovies($userid = '')
+    {
+        $sql = "SELECT * FROM movies WHERE userid = :userid ORDER BY timestamp ASC";
+        $query = $this->db->prepare($sql);
+        $query->execute(array('userid'=> $userid));
+
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // libs/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetchAll();
+    }
+
+    public function insertMovieToDB($movie = array())
+    {
+        if(!count($movie)){
+            return array();
+        }
+
+        $sql = "INSERT INTO movies SET
+                                        link = :link,
+                                        description = :description, 
+                                        thumbnailres = :thumbnailres, 
+                                        title = :title, 
+                                        machinetitle = :machinetitle, 
+                                        youtubeid = :youtubeid, 
+                                        userid = :userid";
+        $query = $this->db->prepare($sql);
+        $query->execute(array('link' => $movie ['link'],
+                              'description' => $movie ['description'],
+                              'thumbnailres' => $movie ['thumbnailres'],
+                              'title' => $movie ['title'],
+                              'machinetitle' => $movie ['machinetitle'],
+                              'youtubeid' => $movie ['youtubeid'],
+                              'userid' => $movie ['userid']
+            )); 
+        
+        return $generatedID;
+    }
+
+
 }
+
+
