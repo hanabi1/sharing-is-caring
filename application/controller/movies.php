@@ -47,6 +47,11 @@ class Movies extends Controller
 
     public function addMovie()
     {
+
+        if(!isset($_POST['link']) || $this->userModel->isUserLoggedIn() === false){
+            $this->redirectToPage('');
+            return false;
+        }
         $movie = array();
         
         $movieModel = $this->loadModel('MoviesModel');

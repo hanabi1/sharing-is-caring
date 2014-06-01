@@ -27,6 +27,10 @@ class Profile extends Controller
 
     public function mymovies()
     {
+        if($this->userModel->isUserLoggedIn() === false){
+            $this->redirectToPage('login');
+            return false;
+        }
         $movieModel = $this->loadModel('MoviesModel');       
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
@@ -39,6 +43,11 @@ class Profile extends Controller
 
     public function messages()
     {
+        if($this->userModel->isUserLoggedIn() === false){
+            $this->redirectToPage('login');
+            return false;
+        }        
+
         $movieModel = $this->loadModel('MoviesModel');       
 
         echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle));     

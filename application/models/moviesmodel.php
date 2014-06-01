@@ -70,7 +70,7 @@ class MoviesModel
     //Get a single movie by its machineTitle
     public function getAllMoviesFromDB()
     {
-        $sql = "SELECT * FROM movies";
+        $sql = "SELECT * FROM movies ORDER BY timestamp DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -176,7 +176,7 @@ class MoviesModel
     //Get the most recently added movies
     public function getMostRecentMovies($numberOfMovies = 5)
     {
-        $sql = "SELECT * FROM movies ORDER BY timestamp ASC LIMIT 0, :numberofmovies";
+        $sql = "SELECT * FROM movies ORDER BY timestamp DESC LIMIT 0, :numberofmovies";
         $query = $this->db->prepare($sql);
         $query->bindParam(':numberofmovies', $numberOfMovies, PDO::PARAM_INT);
         $query->execute();
@@ -192,7 +192,7 @@ class MoviesModel
     //Get all user added movies in time-ascending order
     public function getAscOrderUserAddedMovies($userid = '')
     {
-        $sql = "SELECT * FROM movies WHERE userid = :userid ORDER BY timestamp ASC";
+        $sql = "SELECT * FROM movies WHERE userid = :userid ORDER BY timestamp DESC";
         $query = $this->db->prepare($sql);
         $query->execute(array('userid'=> $userid));
 
