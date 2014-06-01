@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 31 maj 2014 kl 17:26
+-- Tid vid skapande: 01 jun 2014 kl 15:35
 -- Serverversion: 5.6.16
 -- PHP-version: 5.5.11
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `machinetitle` varchar(55) COLLATE utf8_bin NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `youtubeid` varchar(255) COLLATE utf8_bin NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
@@ -41,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `movies` (
 -- Dumpning av Data i tabell `movies`
 --
 
-INSERT INTO `movies` (`link`, `description`, `thumbnailres`, `title`, `machinetitle`, `id`, `youtubeid`) VALUES
-('http://youtu.be/vGfTLb6RFk0', 'The Rum is back :D', 'hqres.jpg', 'Why is the Rum Gone?', 'whyistherumgone', 1, 'vGfTLb6RFk0'),
-('http://youtu.be/z9Uz1icjwrM', 'The hobbits!', 'hqres.jpg', 'The hobbits to isengard!', 'thehobbitstiisengard', 3, 'z9Uz1icjwrM');
+INSERT INTO `movies` (`link`, `description`, `thumbnailres`, `title`, `machinetitle`, `id`, `youtubeid`, `timestamp`) VALUES
+('http://youtu.be/vGfTLb6RFk0', 'The Rum is back :D', 'hqres.jpg', 'Why is the Rum Gone?', 'whyistherumgone', 1, 'vGfTLb6RFk0', '2014-05-31 15:39:48'),
+('http://youtu.be/z9Uz1icjwrM', 'The hobbits!', 'hqres.jpg', 'The hobbits to isengard!', 'thehobbitstiisengard', 3, 'z9Uz1icjwrM', '2014-05-31 15:37:48');
 
 -- --------------------------------------------------------
 

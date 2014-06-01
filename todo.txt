@@ -13,3 +13,9 @@ metod-lista!
  - getthumbnail v
 
 Maybe some css (höhö) app.js
+
+
+- user interface for adding movies to my movies
+
+- add method for adding (most recent) user added movies..
+
