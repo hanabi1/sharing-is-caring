@@ -18,10 +18,10 @@ class Home extends Controller
     {
         $movieModel = $this->loadModel('MoviesModel');               
 
-        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home', 
-                                                            'userLoggedIn' => $this->userModel->isUserLoggedIn()
-                                                            ));     
-        echo $this->dressTemplate('/_templates/header', array('title'=> 'Home'));  
+        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));      
+        echo $this->dressTemplate('/_templates/header', array('title'=> 'Home', 
+                                                              'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));
+                                                                
         require 'application/views/home/index.php';
         echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';

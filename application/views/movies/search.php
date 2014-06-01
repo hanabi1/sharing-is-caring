@@ -12,6 +12,7 @@
 	    	</div>
 	    	<div class="col-sm-8 col-sm-offset-1">
 	    		<?php if(isset($myMovie['description'])):?>
+	    			<h4><?php echo $myMovie['title']?></h4>
 	    			<p><?php echo $myMovie['description']?></p>
 	    		<?php endif;?>		    		
 	    	</div>

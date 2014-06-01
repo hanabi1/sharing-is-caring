@@ -15,9 +15,28 @@ class UserModel
     }
 
     public function isUserLoggedIn(){
-        return false;  
+        if(isset($_SESSION['user_id']) && $_SESSION['user_id']){
+            
+            if(count($this->getUserID($_SESSION['user_id']))){
+                return count($this->getUserID($_SESSION['user_id'])) > 0;
+            }
+        }
+        return false;
     }
     
+    private function getUserID($userID=''){
+        if(!$userID){
+            return false;
+        }
+
+        $sql = "SELECT user_id FROM user_social_link WHERE user_id = :userid limit 1";
+        $query = $this->db->prepare($sql);
+        $query->execute(array('userid' => $userID));
+        // fetchAll() is the PDO method that gets all result rows.
+        return $query->fetch();
+
+    }
+
     public function GetUserIdForUserToken($user_token){
         // Execute the query: SELECT user_id FROM user_social_link WHERE user_token = <user_token>
         // Return the user_id or null if none found.

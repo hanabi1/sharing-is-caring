@@ -31,7 +31,20 @@ class MoviesModel
         // libs/controller.php! If you prefer to get an associative array as the result, then do
         // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        return $query->fetchAll();
+        return $query->fetch();
+    }
+
+    public function getMovieFromDBById($id)
+    {
+        $sql = "SELECT * FROM movies where id = :id limit 1";
+        $query = $this->db->prepare($sql);
+        $query->execute(array('id' => $id));
+
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // libs/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetch();
     }
 
     //Get all movies by its description
@@ -92,6 +105,25 @@ class MoviesModel
                               'userid'=>$movie['userid'],
                               'youtubeid'=>$movie['youtubeid']
                         ));
+
+    }
+
+    public function deleteMovieFromDB($id=''){
+        if(!$id){
+            return false;
+        }
+
+        //Insert all the freshmovies into DB
+        //We use placeholders :example that we populate before execution
+        $sql = "DELETE FROM movies WHERE id = :id";
+
+        //Load up the statement we just used
+        $query = $this->db->prepare($sql);
+
+        //Loop over all the movies in the variable $freshMovies
+        //Send them off one by one in the transaction
+
+        $query->execute(array('id' => $id));
 
     }
 

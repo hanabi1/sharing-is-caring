@@ -18,8 +18,10 @@ class Movies extends Controller
     {
         $movieModel = $this->loadModel('MoviesModel');
      
-        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
-        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
+        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));  
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle, 
+                                                              'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));
+
         echo $this->dressTemplate('/movies/index', array('myMovies'=> $movieModel->getAllMoviesFromDB()));
         echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
@@ -34,8 +36,10 @@ class Movies extends Controller
 
         $movieModel = $this->loadModel('MoviesModel');
 
-        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
-        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle));  
+        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));   
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle, 
+                                                              'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));
+                                                               
         echo $this->dressTemplate('/movies/search', array('myMovies'=> $movieModel->searchMoviesForString($_POST['searchfield'])));
         echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
@@ -49,16 +53,45 @@ class Movies extends Controller
         $youtubeModel = $this->loadModel('YoutubeModel');
         
         $youtubeData = $youtubeModel->getYoutubeDataFromURL($_POST['link']);
-        
+
+        if(!$youtubeData){
+            $this->redirectToPage('profile/mymovies');
+            return false;
+
+        }
+
         $movie['link']         = $youtubeData['entry']['link'][0]['href'];
-        $movie['description']  = $youtubeData['entry']['media$group']['media$description']['$t'];
+        $movie['description']  = nl2br($youtubeData['entry']['media$group']['media$description']['$t']);
         $movie['youtubeid']    = $youtubeData['entry']['media$group']['yt$videoid']['$t'];
         $movie['thumbnailres'] = 'http://i1.ytimg.com/vi/7lCDEYXw3mM/default.jpg';        
-        $movie['title']  = $youtubeData['entry']['media$group']['media$title']['$t'];
-        $movie['machinetitle']  = $this->addMachineTitle($movie['title']);
-        $movie['userid']  = $_SESSION['user_id'];
+        $movie['title']        = nl2br($youtubeData['entry']['media$group']['media$title']['$t']);
+        $movie['machinetitle'] = $this->addMachineTitle($movie['title']);
+        $movie['userid']       = $_SESSION['user_id'];
 
         $movieModel->addMovieToDB($movie);
+
+        $this->redirectToPage('profile/mymovies');
+    }
+
+    public function delete($id=''){
+        if(!$id || $this->userModel->isUserLoggedIn() === false){
+            $this->redirectToPage('');
+        }
+
+        $movieModel = $this->loadModel('MoviesModel');
+        $movie = $movieModel->getMovieFromDBByID($id);
+
+        if($movie['userid'] === $_SESSION['user_id']){
+            $movieModel->deleteMovieFromDB($id);
+            $this->redirectToPage('profile/mymovies');
+        }else{
+            echo '<h1>DELETING OTHER PEOPLES...SHAME ON YOU!!!</h1>';
+            echo '<p>Click this link to return to the homepage</p>';
+            echo '<a href="'. URL . '">I\'m a bad person....but I promise to behave</a>';
+
+        }
+
+        
     }
 
     private function addMachineTitle($title=''){

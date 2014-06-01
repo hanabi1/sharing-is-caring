@@ -39,9 +39,17 @@ class YoutubeModel
     }
 
 
-    public function getYoutubeDataFromURL($url){
+    public function getYoutubeDataFromURL($url=''){
+
+        if(!$url){
+            return false;
+        }
 
         $youtubeID = $this->youtubeIDFromURL($url);
+
+        if(!$youtubeID){
+            return false;
+        }
 
         //Starts cURL 
         $ch = curl_init();
@@ -89,7 +97,7 @@ class YoutubeModel
             ;
         $result = preg_match($pattern, $url, $matches);
 
-        if (false !== $result) {
+        if ($result) {
             return $matches[1];
         }
         return false;
