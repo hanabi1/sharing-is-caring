@@ -48,37 +48,24 @@ class Movies extends Controller
     public function addMovie()
     {
 
-        if(!isset($_POST['link']) || $this->userModel->isUserLoggedIn() === false){
+        if($this->userModel->isUserLoggedIn() === false){
             $this->redirectToPage('');
             return false;
         }
-        $movie = array();
-        
-        $movieModel = $this->loadModel('MoviesModel');
-        $youtubeModel = $this->loadModel('YoutubeModel');
-        
-        $youtubeData = $youtubeModel->getYoutubeDataFromURL($_POST['link']);
 
-        if(!$youtubeData){
-            $this->redirectToPage('profile/mymovies');
-            return false;
-
+        if(isset($_POST['link'])){
+            $this->addYoutubeMovie();
         }
-
-        $movie['link']         = $youtubeData['entry']['link'][0]['href'];
-        $movie['description']  = nl2br($youtubeData['entry']['media$group']['media$description']['$t']);
-        $movie['youtubeid']    = $youtubeData['entry']['media$group']['yt$videoid']['$t'];
-        $movie['thumbnailres'] = 'http://i1.ytimg.com/vi/7lCDEYXw3mM/default.jpg';        
-        $movie['title']        = nl2br($youtubeData['entry']['media$group']['media$title']['$t']);
-        $movie['machinetitle'] = $this->addMachineTitle($movie['title']);
-        $movie['userid']       = $_SESSION['user_id'];
-
-        $movieModel->addMovieToDB($movie);
-
+        
+        if(isset($_FILES,$_POST['title'],$_POST['description'])){
+            $this->uploadMovie();
+        }
         $this->redirectToPage('profile/mymovies');
-    }
+        return false;
 
-    public function delete($id=''){
+    }
+    public function delete($id='')
+    {
         if(!$id || $this->userModel->isUserLoggedIn() === false){
             $this->redirectToPage('');
         }
@@ -97,6 +84,64 @@ class Movies extends Controller
         }
 
         
+    }
+    
+    private function uploadMovie(){
+        $movie = array();
+                echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));   
+        $movieModel = $this->loadModel('MoviesModel');
+
+     
+        
+        $file = $_FILES['filepenctype=”multipart/form-data”_ath'];
+        var_dump($file);   
+        
+        $target_path = UPLOAD_DIR . basename($file['name']);  
+        
+        if(!move_uploaded_file($file['tmp_name'], $target_path)) {
+            $this->redirectToPage('');
+        }
+
+        shell_exec('ffmpeg -i ' . $target_path . ' -ss 0 -s 120x90 -vframes 1 ' . $target_path .'-thumb.jpg');    
+
+        $movie['link']         = $target_path;
+        $movie['description']  = nl2br($_POST['description']);
+        $movie['youtubeid']    = mt_rand(10000000, 99999999);
+        $movie['title']        = nl2br($_POST['title']);
+        $movie['machinetitle'] = $this->addMachineTitle($movie['title']);
+        
+        $movie['thumbnailres'] = URL . $target_path .'-thumb.jpg';        
+        $movie['userid']       = $_SESSION['user_id'];   
+
+        $movieModel->addMovieToDB($movie);
+        $this->redirectToPage('profile/mymovies'); 
+    }
+
+    private function addYoutubeMovie(){
+        $movie = array();
+        
+        $movieModel = $this->loadModel('MoviesModel');
+        $youtubeModel = $this->loadModel('YoutubeModel');
+        
+        $youtubeData = $youtubeModel->getYoutubeDataFromURL($_POST['link']);
+
+        if(!$youtubeData){
+            $this->redirectToPage('profile/mymovies');
+            return false;
+
+        }
+
+        $movie['link']         = $youtubeData['entry']['link'][0]['href'];
+        $movie['description']  = nl2br($youtubeData['entry']['media$group']['media$description']['$t']);
+        $movie['youtubeid']    = $youtubeData['entry']['media$group']['yt$videoid']['$t'];
+        $movie['thumbnailres'] = 'http://i1.ytimg.com/vi/' . $movie['youtubeid'] . '/1.jpg';        
+        $movie['title']        = nl2br($youtubeData['entry']['media$group']['media$title']['$t']);
+        $movie['machinetitle'] = $this->addMachineTitle($movie['title']);
+        $movie['userid']       = $_SESSION['user_id'];
+
+        $movieModel->addMovieToDB($movie);
+
+        $this->redirectToPage('profile/mymovies');        
     }
 
     private function addMachineTitle($title=''){
