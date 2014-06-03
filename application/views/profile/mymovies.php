@@ -52,5 +52,9 @@
 			    <button type="submit" class="btn btn-primary">Upload</button>
 			</form>
 		</div>
+		<div class="col-sm-8 col-sm-offset-1">
+			<h3>Upload a movie with resumable_js</h3>
+			<a href="#" id="browseButton">Select files</a>
+		</div>
 	</div>
 </div>
