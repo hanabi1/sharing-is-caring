@@ -21,7 +21,6 @@ class Profile extends Controller
         echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle, 
                                                               'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));   
         require 'application/views/profile/index.php';
-        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
 
@@ -40,6 +39,23 @@ class Profile extends Controller
         echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
         require 'application/views/_templates/footer.php';
     }
+
+        public function addmovie()
+    {
+        if($this->userModel->isUserLoggedIn() === false){
+            $this->redirectToPage('login');
+            return false;
+        }
+        $movieModel = $this->loadModel('MoviesModel');       
+
+        echo $this->dressTemplate('/_templates/head', array('title'=> $this->pageTitle)); 
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle, 
+                                                              'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));
+        echo $this->dressTemplate('/profile/addmovie', array('movies'=> $movieModel->getAscOrderUserAddedMovies($_SESSION['user_id']))); 
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
+        require 'application/views/_templates/footer.php';
+    }
+
 
     public function messages()
     {

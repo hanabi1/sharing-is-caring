@@ -17,7 +17,7 @@
         <!-- jQuery -->
         <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
         <!-- our JavaScript -->
-        <script src="<?php echo URL; ?>public/js/application.js"></script>
+        <script src="<?php echo URL; ?>public/js/app.js"></script>
         
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">

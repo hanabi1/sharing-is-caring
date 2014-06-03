@@ -1,5 +1,5 @@
 <div class="col-sm-7 col-sm-offset-1">
-    <h2>Movies</h2>
+    <h2>Movie</h2>
     <?php foreach ($myMovies as $myMovie):?>
     	<div class="col-sm-12">
     		<div class="col-sm-3">

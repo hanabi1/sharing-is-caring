@@ -77,7 +77,7 @@ class Movies extends Controller
             $movieModel->deleteMovieFromDB($id);
             $this->redirectToPage('profile/mymovies');
         }else{
-            echo '<h1>DELETING OTHER PEOPLES...SHAME ON YOU!!!</h1>';
+            echo '<h1>DELETING OTHER PEOPLES...SHAME ON YOU BIG B!!!</h1>';
             echo '<p>Click this link to return to the homepage</p>';
             echo '<a href="'. URL . '">I\'m a bad person....but I promise to behave</a>';
 
@@ -85,6 +85,21 @@ class Movies extends Controller
 
         
     }
+
+    public function show($title='')
+    {
+        $movieModel = $this->loadModel('MoviesModel');
+        $movie = $movieModel->getMovieFromDBByTitle($title);
+
+        echo $this->dressTemplate('/_templates/head', array('title'=> 'Home'));  
+        echo $this->dressTemplate('/_templates/header', array('title'=> $this->pageTitle, 
+                                                              'isUserLoggedIn' => $this->userModel->isUserLoggedIn()));
+
+        echo $this->dressTemplate('/movies/show', array('myMovies'=> $movie));
+        echo $this->dressTemplate('/_templates/sidebar-right', array('recentMovies'=> $movieModel->getMostRecentMovies())); 
+        require 'application/views/_templates/footer.php';
+    }
+    
     
     private function uploadMovie(){
         $movie = array();
@@ -93,11 +108,11 @@ class Movies extends Controller
 
      
         
-        $file = $_FILES['filepenctype=”multipart/form-data”_ath'];
-        var_dump($file);   
+        $file = $_FILES['filepenctype=”multipart/form-data”_ath'];  
         
         $target_path = UPLOAD_DIR . basename($file['name']);  
-        
+
+          
         if(!move_uploaded_file($file['tmp_name'], $target_path)) {
             $this->redirectToPage('');
         }
@@ -114,7 +129,7 @@ class Movies extends Controller
         $movie['userid']       = $_SESSION['user_id'];   
 
         $movieModel->addMovieToDB($movie);
-        $this->redirectToPage('profile/mymovies'); 
+        //$this->redirectToPage('profile/mymovies'); 
     }
 
     private function addYoutubeMovie(){

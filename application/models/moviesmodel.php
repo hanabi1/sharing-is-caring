@@ -47,6 +47,19 @@ class MoviesModel
         return $query->fetch();
     }
 
+    public function getMovieFromDBByTitle($machineTitle)
+    {
+        $sql = "SELECT * FROM movies where machinetitle = :machinetitle limit 1";
+        $query = $this->db->prepare($sql);
+        $query->execute(array('machinetitle' => $machineTitle));
+
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // libs/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetchAll();
+    }
+
     //Get all movies by its description
     //Converts both the search string and descriptions searched to upper case.
     //So that the search becomes case insensitive
@@ -67,10 +80,10 @@ class MoviesModel
         return $query->fetchAll();
     }
 
-    //Get a single movie by its machineTitle
+    //Get all movies
     public function getAllMoviesFromDB()
     {
-        $sql = "SELECT * FROM movies ORDER BY timestamp DESC";
+        $sql = "SELECT * FROM movies ORDER BY RAND()";
         $query = $this->db->prepare($sql);
         $query->execute();
 

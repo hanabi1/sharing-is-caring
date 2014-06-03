@@ -30,9 +30,9 @@
                                     <li class="dropdown <?php if(strtolower($title)=='profile') echo 'active'?>">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img class="menu-thumbnail" src="<?php echo $_SESSION['user_profile_thumb']?>" alt="YOU" title="YOU"><?php if($isUserLoggedIn) echo ucfirst($_SESSION['user_name']) . '\'s Profile'; else echo 'My Profile'?><b class="caret"></b></a>
                                         <ul role="menu" class="dropdown-menu">
-                                            <li><a href="<?php echo URL; ?>profile/mymovies">My Movies</a></li>
                                             <li><a href="<?php echo URL; ?>profile/myprofile">Profile</a></li>
-                                            <li><a href="<?php echo URL; ?>profile/messages">Messages</a></li>
+                                            <li><a href="<?php echo URL; ?>profile/mymovies">My Movies</a></li>
+                                            <li><a href="<?php echo URL; ?>profile/addmovie">Add Movie</a></li>
                                             <li class="divider"></li>
                                             <li><a href="<?php echo URL; ?>profile/logout">Logout</a></li>
                                         </ul>
