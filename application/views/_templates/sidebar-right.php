@@ -3,10 +3,10 @@
     <?php foreach ($recentMovies as $recentMovie):?>
 		<div class="recentmovierow">
             <?php if(isset($recentMovie['youtubeid'],$recentMovie['title'],$recentMovie['thumbnailres'],$recentMovie['link'])):?>
-    			<a href="<?php echo $recentMovie['link']?>">
+    			<a href="<?php echo ucfirst($recentMovie['link'])?>">
     				<img class="video-thumbnail" src="<?php echo $recentMovie['thumbnailres']?>" alt="<?php echo $recentMovie['thumbnailres']?>" target="_blank">
     			</a>
-                <h4><?php echo $recentMovie['title']?></h4>
+                <h4><?php echo ucfirst($recentMovie['title'])?></h4>
     		<?php endif;?>
         </div>
        <?php endforeach;?>

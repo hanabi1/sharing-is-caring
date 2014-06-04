@@ -11,8 +11,8 @@
 	    	</div>
 	    	<div class="col-sm-8">
 	    		<?php if(isset($myMovie['title'],$myMovie['description'],$myMovie['id'])):?>
-	    			<h4><?php echo $myMovie['title']?></h4>
-	    			<p><?php echo $myMovie['description']?></p>
+	    			<h4><?php echo ucfirst($myMovie['title'])?></h4>
+	    			<p><?php echo ucfirst($myMovie['description'])?></p>
 	    		<?php endif;?>		    		
 	    	</div>
 	    	<div class="col-sm-1">
