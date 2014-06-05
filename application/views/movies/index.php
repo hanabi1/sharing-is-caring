@@ -10,7 +10,7 @@
 	    		<?php endif;?>
 	    	</div>
 	    	<div class="col-sm-8">
-	    		<h4><?php echo ucfirst($myMovie['title'])?></h4>
+	    		<h4><a href="<?php echo $myMovie['link']?>"><?php echo ucfirst($myMovie['title'])?></a></h4>
 	    		<?php if(isset($myMovie['description'])):?>
 	    			<p><?php echo ucfirst($myMovie['description'])?></p>
 	    		<?php endif;?>		    		

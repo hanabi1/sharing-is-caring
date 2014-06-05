@@ -11,7 +11,7 @@
 	    	</div>
 	    	<div class="col-sm-8">
 	    		<?php if(isset($myMovie['title'],$myMovie['description'],$myMovie['id'])):?>
-	    			<h4><?php echo ucfirst($myMovie['title'])?></h4>
+	    			<h4><a href="<?php echo $myMovie['link']?>"><?php echo ucfirst($myMovie['title'])?></a></h4>
 	    			<p><?php echo ucfirst($myMovie['description'])?></p>
 	    		<?php endif;?>		    		
 	    	</div>

@@ -6,7 +6,7 @@
     			<a href="<?php echo ucfirst($recentMovie['link'])?>">
     				<img class="video-thumbnail" src="<?php echo $recentMovie['thumbnailres']?>" alt="<?php echo $recentMovie['thumbnailres']?>" target="_blank">
     			</a>
-                <h4><?php echo ucfirst($recentMovie['title'])?></h4>
+                <h4><a href="<?php echo ucfirst($recentMovie['link'])?>"><?php echo ucfirst($recentMovie['title'])?></a></h4>
     		<?php endif;?>
         </div>
        <?php endforeach;?>
